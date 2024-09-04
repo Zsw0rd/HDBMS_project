@@ -3,7 +3,7 @@ import mysql.connector
 myConnnection = ""
 cursor = ""
 print("#"*48)
-print("#"*10,"CMR HOTELS DATABASE SYSTEM","#"*10)
+print("#"*10,"HOTELS DATABASE SYSTEM","#"*10)
 userName = input("\n ENTER MYSQL SERVER'S USERNAME : ")
 password = input("\n ENTER MYSQL SERVER'S PASSWORD : ")
 if userName=='root' and password=='#Your System Password':
