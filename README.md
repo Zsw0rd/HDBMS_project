@@ -1,13 +1,39 @@
-# Hotel-DBMS-School-project-
-This is a project i made for a school assignment. It is Hotel DataBase Management System made using python and MySQL
+# HMS — Full GUI with Admin Lock (No secrets in code)
 
-Pre-requisite 
-Please Have The Latest Version Of Python and MYSQL Installed and make sure Python and MYSQL are Connected Via Path
+**Goal:** Lock the Admin tab behind a password **without** hardcoding any password in the code.
 
-#IMPORTANT
-Please save all the python files in one single folder
-mainsql.py is the main executable file for the program
+## How it works
+- On first run (after DB connect), the app checks the `USERS` table.
+  - If no admin exists, a **Set Up Admin** dialog opens. You pick the admin username & password.
+  - The password is stored **only as a PBKDF2-SHA256 hash** in MySQL (table `USERS`). No plaintext, no secrets in code.
+- On later runs, the **Admin** tab is **locked**. To unlock, log in via the **Admin (locked)** tab.
+- You can **Lock Admin** any time from the Admin top bar (acts like logout).
 
-#IMPORTANT
-changes to be made:
-Please enter Your MYSQL password in line 9 and line 10 in ide of file mainsql.py and line 5 of the file class_cid.py
+## Install & Run
+```
+python -m pip install -r requirements.txt
+python main.py
+```
+Enter your MySQL host/user/password to connect. The app creates DB `HMS` and necessary tables.
+
+### Requirements
+```
+mysql-connector-python
+```
+Tkinter is usually included; if missing:
+- Ubuntu/Debian: `sudo apt-get install python3-tk`
+- Arch: `sudo pacman -S tk`
+- MSYS2 UCRT64: `pacman -S mingw-w64-ucrt-x86_64-tk`
+
+## Security notes
+- Passwords are hashed with **PBKDF2-SHA256 (200k iterations)** with a random 128-bit salt.
+- Verification is constant-time (`hmac.compare_digest`).
+- You can add more roles later by inserting users into `USERS` with different `ROLE` values.
+
+## Files
+- `main.py` – launches GUI
+- `gui.py` – all screens, including **Admin lock & login**
+- `db.py` – DB/schema + password hashing + user management helpers
+- `requirements.txt` – MySQL driver
+
+Enjoy! 🔒
