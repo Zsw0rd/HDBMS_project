@@ -1,4 +1,4 @@
-# HMS — Full GUI with Admin Lock (No secrets in code)
+# HMS — Full GUI
 
 
 ## How it works
