@@ -1,6 +1,5 @@
 # HMS — Full GUI with Admin Lock (No secrets in code)
 
-**Goal:** Lock the Admin tab behind a password **without** hardcoding any password in the code.
 
 ## How it works
 - On first run (after DB connect), the app checks the `USERS` table.
@@ -22,7 +21,6 @@ mysql-connector-python
 ```
 Tkinter is usually included; if missing:
 - Ubuntu/Debian: `sudo apt-get install python3-tk`
-- Arch: `sudo pacman -S tk`
 - MSYS2 UCRT64: `pacman -S mingw-w64-ucrt-x86_64-tk`
 
 ## Security notes
@@ -35,5 +33,3 @@ Tkinter is usually included; if missing:
 - `gui.py` – all screens, including **Admin lock & login**
 - `db.py` – DB/schema + password hashing + user management helpers
 - `requirements.txt` – MySQL driver
-
-Enjoy! 🔒
